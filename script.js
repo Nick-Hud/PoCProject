@@ -1,7 +1,8 @@
-let playerBox
+let player1
+const floorHeight = 50
 function setup() {
   frameRate(60);
-  playerBox = createVector(0, 0, 0)
+  player1 = new player()
   createCanvas(windowWidth - 20, windowHeight - 100, WEBGL);
   rectMode(CENTER)
   angleMode(DEGREES)
@@ -12,28 +13,28 @@ function draw() {
   //camera(0, -40, 75, 0, 0, 0);
   camera(0, -50, 150, 0, 0, 0);
   stroke(255);
+  //draw player
   push()
   fill(0)
-  translate(playerBox);
+  translate(player1.getPosition(false));
   box(20);
   pop()
   playerInput()
   scene()
-
 }
 
-function scene(){
+function scene() {
   //bottom tiles
   let xArr = [3]
   xArr = [-40, 0, 40]
   let zArr = [3]
   zArr = [-40, 0, 40]
-  let yVal = 50
+  let yVal = floorHeight
   for (let i = 0; i <= 2; i++) {
     for (let j = 0; j <= 2; j++) {
       push()
       noStroke()
-      translate(xArr[j],yVal,zArr[i])
+      translate(xArr[j], yVal, zArr[i])
       fill(150)
       box(30, 3, 30)
       pop()
@@ -69,39 +70,10 @@ function scene(){
 }
 
 
-function playerInput(){
-  playerBox.limit(45)
-  if (keyIsDown(87)) {
-    //console.log("Back")
-    playerBox.sub(0, 0, 1)
-  }
-  if (keyIsDown(83)) {
-    //console.log("Forward")
-    playerBox.add(0, 0, 1)
-  }
-  if (keyIsDown(37)) {
-    //console.log("Left")
-    playerBox.sub(1, 0, 0)
-  }
-  if (keyIsDown(38)) {
-    //console.log("Up")
-    playerBox.sub(0, 1, 0)
-  }
-  if (keyIsDown(39)) {
-    //console.log("Right")
-    playerBox.add(1, 0, 0)
-  }
-  if (keyIsDown(40)) {
-    //console.log("Down")
-    playerBox.add(0, 1, 0)
-  }
-}
-
-
 function keyPressed() {
   let keypressed = key;
   if (keypressed == " ") {
-    playerBox.set(0, 0, 0)
+    player1.set(0, 0, 0)
   }
   return false;
 }
