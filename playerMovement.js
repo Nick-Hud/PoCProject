@@ -19,7 +19,7 @@ function playerInput() {
 
 class player {
     constructor() {
-        this.position = createVector(0, 0, 0)
+        this.position = createVector(38, 35, 45)
     }
 
     getPosition(array) {
@@ -80,14 +80,13 @@ class player {
         let jumpFrames = jumpTime * 60
         jumpHoldToFrame = frameCount + jumpFrames
         jump = true
-        
+        newYVal = newYVal +  10
+
     }
 
 }
 
-function collisionDetection() {
 
-}
 let jump = false
 let jumpHoldToFrame
 function gravity() {

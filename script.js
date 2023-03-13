@@ -1,8 +1,10 @@
 let player1
-const floorHeight = 50
+let floorHeight = 50
 let frameCount = 0
+let newYVal = 50
 
 function setup() {
+  newYVal = 50
   frameRate(60);
   player1 = new player()
   createCanvas(windowWidth - 20, windowHeight - 100, WEBGL);
@@ -33,14 +35,15 @@ function scene() {
   xArr = [-40, 0, 40]
   let zArr = [3]
   zArr = [-40, 0, 40]
-  let yVal = floorHeight
-  for (let i = 0; i <= 2; i++) {
-    for (let j = 0; j <= 2; j++) {
+  let yVal = newYVal
+  for (let i = 2; i >= 0; i--) {
+    for (let j = 2; j >= 0; j--) {
       push()
       translate(xArr[j], yVal, zArr[i])
       fill(150)
       box(30, 3, 30)
       pop()
+      yVal = yVal - 10
     }
   }
   //back panel
@@ -76,7 +79,8 @@ function scene() {
 function keyPressed() {
   let keypressed = key;
   if (keypressed == "#") {
-    player1.set(0, 0, 0)
+    setup()
+    player1.set(38, 35, 45)
   }
   if (keypressed == " ") {
     player1.jump()
