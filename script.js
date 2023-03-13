@@ -70,6 +70,7 @@ function scene(){
 
 
 function playerInput(){
+  playerBox.limit(45)
   if (keyIsDown(87)) {
     //console.log("Back")
     playerBox.sub(0, 0, 1)

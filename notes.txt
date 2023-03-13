@@ -1,3 +1,5 @@
 fullscreen()
 focused
-testing for git
+add gravity and make example level
+idea going to be platformer game type thing
+doodle jump esque
