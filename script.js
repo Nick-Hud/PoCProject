@@ -4,6 +4,7 @@ function setup() {
   playerBox = createVector(0, 0, 0)
   createCanvas(windowWidth - 20, windowHeight - 100, WEBGL);
   rectMode(CENTER)
+  angleMode(DEGREES)
 }
 
 function draw() {
@@ -11,8 +12,6 @@ function draw() {
   //camera(0, -40, 75, 0, 0, 0);
   camera(0, -50, 150, 0, 0, 0);
   stroke(255);
-  fill(255, 102, 94);
-  //box(85);
   push()
   fill(0)
   translate(playerBox);
@@ -24,6 +23,7 @@ function draw() {
 }
 
 function scene(){
+  //bottom tiles
   let xArr = [3]
   xArr = [-40, 0, 40]
   let zArr = [3]
@@ -39,7 +39,35 @@ function scene(){
       pop()
     }
   }
+  //back panel
+  push()
+  fill(255, 102, 94);
+  translate(0, 0, -60)
+  plane(120, 120);
+  pop()
+  //left panel
+  push()
+  fill(255, 102, 94);
+  translate(-60, 0, 0)
+  rotateY(90)
+  plane(120, 120);
+  pop()
+  //right panel
+  push()
+  fill(255, 102, 94);
+  translate(60, 0, 0)
+  rotateY(90)
+  plane(120, 120);
+  pop()
+  //bottom panel
+  push()
+  fill(255, 102, 94);
+  translate(0, 60, 0)
+  rotateX(90)
+  plane(120, 120);
+  pop()
 }
+
 
 function playerInput(){
   if (keyIsDown(87)) {
