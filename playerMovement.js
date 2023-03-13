@@ -75,13 +75,41 @@ class player {
             this.position.add(0, 0, value)
         }
     }
+    jump() {
+        let jumpTime = 1.5
+        let jumpFrames = jumpTime * 60
+        jumpHoldToFrame = frameCount + jumpFrames
+        jump = true
+        
+    }
 
 }
 
 function collisionDetection() {
 
 }
-
+let jump = false
+let jumpHoldToFrame
 function gravity() {
+    //sketchy speed distance time falling physics stuff with whack made up numbers lol
+    playerPosArr = player1.getPosition(true)
+    if (frameCount <= jumpHoldToFrame) {
+        jump = true
+        player1.set(playerPosArr[0], playerPosArr[1] - 0.5, playerPosArr[2])
+    }
+    if (frameCount >= jumpHoldToFrame) {
+        jump = false
+    }
+    if (!(jump)) {
+        playerPosArr = player1.getPosition(true)
+        let fallDistance = floorHeight - playerPosArr[1] - 15
+        let fallTime = 3
+        let fallFrames = fallTime * 60
+        let speed = (fallDistance / fallFrames) * 7
+        let holdToFrame = fallFrames + frameCount
+        if (frameCount <= holdToFrame) {
+            player1.set(playerPosArr[0], playerPosArr[1] + speed, (playerPosArr[2]))
+        }
 
+    }
 }

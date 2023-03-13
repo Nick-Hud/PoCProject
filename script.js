@@ -1,16 +1,18 @@
 let player1
 const floorHeight = 50
+let frameCount = 0
+
 function setup() {
   frameRate(60);
   player1 = new player()
   createCanvas(windowWidth - 20, windowHeight - 100, WEBGL);
   rectMode(CENTER)
   angleMode(DEGREES)
+  frameCount = 0
 }
 
 function draw() {
   background(60);
-  //camera(0, -40, 75, 0, 0, 0);
   camera(0, -50, 150, 0, 0, 0);
   stroke(255);
   //draw player
@@ -21,6 +23,8 @@ function draw() {
   pop()
   playerInput()
   scene()
+  gravity()
+  frameCount++
 }
 
 function scene() {
@@ -33,7 +37,6 @@ function scene() {
   for (let i = 0; i <= 2; i++) {
     for (let j = 0; j <= 2; j++) {
       push()
-      noStroke()
       translate(xArr[j], yVal, zArr[i])
       fill(150)
       box(30, 3, 30)
@@ -72,8 +75,11 @@ function scene() {
 
 function keyPressed() {
   let keypressed = key;
-  if (keypressed == " ") {
+  if (keypressed == "#") {
     player1.set(0, 0, 0)
+  }
+  if (keypressed == " ") {
+    player1.jump()
   }
   return false;
 }
