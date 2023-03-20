@@ -76,7 +76,7 @@ class player {
         }
     }
     jump() {
-        let jumpTime = 1.5
+        let jumpTime = 0.75
         let jumpFrames = jumpTime * 60
         jumpHoldToFrame = frameCount + jumpFrames
         jump = true
@@ -102,7 +102,7 @@ function gravity() {
     if (!(jump)) {
         playerPosArr = player1.getPosition(true)
         let fallDistance = floorHeight - playerPosArr[1] - 15
-        let fallTime = 3
+        let fallTime = 2
         let fallFrames = fallTime * 60
         let speed = (fallDistance / fallFrames) * 7
         let holdToFrame = fallFrames + frameCount
